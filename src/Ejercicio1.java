@@ -7,13 +7,86 @@
  *
  * @author Alumno
  */
-public class Ejercicio1 extends javax.swing.JFrame {
+import java.awt.event.ActionListener; // <-- ¡IMPORTANTE! Para que reconozca el "oyente"
+import javax.swing.JButton;
 
+public class Ejercicio1 extends javax.swing.JFrame {
+    private String primerNumero;
+    private String operador;
+    private boolean esNuevaOperacion = true;
     /**
      * Creates new form Ejercicio1
      */
     public Ejercicio1() {
         initComponents();
+
+ActionListener listenerNumeros = e -> {
+    if (esNuevaOperacion) {
+        displayTextField.setText("");
+        esNuevaOperacion = false;
+    }
+    // Obtenemos el texto del botón que fue presionado
+    String textoBoton = ((JButton) e.getSource()).getText();
+    displayTextField.setText(displayTextField.getText() + textoBoton);
+};
+
+// 2. Asignamos ese listener a cada botón numérico
+btnCero.addActionListener(listenerNumeros);
+btnUno.addActionListener(listenerNumeros);
+btnDos.addActionListener(listenerNumeros);
+btnTres.addActionListener(listenerNumeros);
+btnCuatro.addActionListener(listenerNumeros);
+btnCinco.addActionListener(listenerNumeros);
+btnSeis.addActionListener(listenerNumeros);
+btnSiete.addActionListener(listenerNumeros);
+btnOcho.addActionListener(listenerNumeros);
+btnNueve.addActionListener(listenerNumeros);
+
+// 3. Creamos un solo "Listener" para los botones de operaciones
+ActionListener listenerOperaciones = e -> {
+    primerNumero = displayTextField.getText();
+    operador = ((JButton) e.getSource()).getText();
+    esNuevaOperacion = true; // Preparamos para que el siguiente número limpie el display
+};
+
+// 4. Asignamos ese listener a cada botón de operación
+btnSuma.addActionListener(listenerOperaciones);
+btnResta.addActionListener(listenerOperaciones);
+btnMultiplicar.addActionListener(listenerOperaciones);
+btnDividir.addActionListener(listenerOperaciones);
+
+// 5. Lógica para el botón de IGUAL
+btnIgual.addActionListener(e -> {
+    try {
+        String segundoNumero = displayTextField.getText();
+        double n1 = Double.parseDouble(primerNumero);
+        double n2 = Double.parseDouble(segundoNumero);
+        double resultado = 0;
+
+        switch (operador) {
+            case "+":
+                resultado = n1 + n2;
+                break;
+            case "-":
+                resultado = n1 - n2;
+                break;
+            case "*":
+                resultado = n1 * n2;
+                break;
+            case "/":
+                if (n2 == 0) {
+                    displayTextField.setText("Error: Div por 0");
+                    return; // Termina la ejecución aquí
+                }
+                resultado = n1 / n2;
+                break;
+        }
+        displayTextField.setText(String.valueOf(resultado));
+    } catch (Exception ex) {
+        displayTextField.setText("Error"); // Por si algo sale mal
+    }
+    esNuevaOperacion = true;
+});
     }
 
     /**
@@ -25,21 +98,116 @@ public class Ejercicio1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        NORTE = new javax.swing.JPanel();
+        displayTextField = new javax.swing.JTextField();
+        CENTRO = new javax.swing.JPanel();
+        btnUno = new javax.swing.JButton();
+        btnDos = new javax.swing.JButton();
+        btnTres = new javax.swing.JButton();
+        btnCuatro = new javax.swing.JButton();
+        btnCinco = new javax.swing.JButton();
+        btnSeis = new javax.swing.JButton();
+        btnSiete = new javax.swing.JButton();
+        btnOcho = new javax.swing.JButton();
+        btnNueve = new javax.swing.JButton();
+        btnCero = new javax.swing.JButton();
+        Sur = new javax.swing.JPanel();
+        btnSuma = new javax.swing.JButton();
+        btnResta = new javax.swing.JButton();
+        btnMultiplicar = new javax.swing.JButton();
+        btnDividir = new javax.swing.JButton();
+        btnIgual = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        NORTE.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        displayTextField.setEditable(false);
+        displayTextField.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        displayTextField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        NORTE.add(displayTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 135, -1));
+
+        CENTRO.setLayout(new java.awt.GridLayout(4, 3, 5, 5));
+
+        btnUno.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnUno.setText("1");
+        CENTRO.add(btnUno);
+
+        btnDos.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnDos.setText("2");
+        CENTRO.add(btnDos);
+
+        btnTres.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnTres.setText("3");
+        btnTres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTresActionPerformed(evt);
+            }
+        });
+        CENTRO.add(btnTres);
+
+        btnCuatro.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnCuatro.setText("4");
+        CENTRO.add(btnCuatro);
+
+        btnCinco.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnCinco.setText("5");
+        CENTRO.add(btnCinco);
+
+        btnSeis.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnSeis.setText("6");
+        CENTRO.add(btnSeis);
+
+        btnSiete.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnSiete.setText("7");
+        CENTRO.add(btnSiete);
+
+        btnOcho.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnOcho.setText("8");
+        CENTRO.add(btnOcho);
+
+        btnNueve.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnNueve.setText("9");
+        CENTRO.add(btnNueve);
+
+        btnCero.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnCero.setText("0");
+        CENTRO.add(btnCero);
+
+        NORTE.add(CENTRO, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 504, 140));
+
+        getContentPane().add(NORTE, java.awt.BorderLayout.PAGE_START);
+
+        Sur.setLayout(new java.awt.GridLayout(1, 5, 5, 5));
+
+        btnSuma.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnSuma.setText("+");
+        Sur.add(btnSuma);
+
+        btnResta.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnResta.setText("-");
+        Sur.add(btnResta);
+
+        btnMultiplicar.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnMultiplicar.setText("*");
+        Sur.add(btnMultiplicar);
+
+        btnDividir.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnDividir.setText("/");
+        Sur.add(btnDividir);
+
+        btnIgual.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnIgual.setText("=");
+        Sur.add(btnIgual);
+
+        getContentPane().add(Sur, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnTresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -77,5 +245,24 @@ public class Ejercicio1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel CENTRO;
+    private javax.swing.JPanel NORTE;
+    private javax.swing.JPanel Sur;
+    private javax.swing.JButton btnCero;
+    private javax.swing.JButton btnCinco;
+    private javax.swing.JButton btnCuatro;
+    private javax.swing.JButton btnDividir;
+    private javax.swing.JButton btnDos;
+    private javax.swing.JButton btnIgual;
+    private javax.swing.JButton btnMultiplicar;
+    private javax.swing.JButton btnNueve;
+    private javax.swing.JButton btnOcho;
+    private javax.swing.JButton btnResta;
+    private javax.swing.JButton btnSeis;
+    private javax.swing.JButton btnSiete;
+    private javax.swing.JButton btnSuma;
+    private javax.swing.JButton btnTres;
+    private javax.swing.JButton btnUno;
+    private javax.swing.JTextField displayTextField;
     // End of variables declaration//GEN-END:variables
 }
