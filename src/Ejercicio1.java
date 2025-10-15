@@ -7,7 +7,7 @@
  *
  * @author Alumno
  */
-import java.awt.event.ActionListener; // <-- ¡IMPORTANTE! Para que reconozca el "oyente"
+import java.awt.event.ActionListener; 
 import javax.swing.JButton;
 
 public class Ejercicio1 extends javax.swing.JFrame {
@@ -25,12 +25,12 @@ ActionListener listenerNumeros = e -> {
         displayTextField.setText("");
         esNuevaOperacion = false;
     }
-    // Obtenemos el texto del botón que fue presionado
+    
     String textoBoton = ((JButton) e.getSource()).getText();
     displayTextField.setText(displayTextField.getText() + textoBoton);
 };
 
-// 2. Asignamos ese listener a cada botón numérico
+
 btnCero.addActionListener(listenerNumeros);
 btnUno.addActionListener(listenerNumeros);
 btnDos.addActionListener(listenerNumeros);
@@ -42,20 +42,20 @@ btnSiete.addActionListener(listenerNumeros);
 btnOcho.addActionListener(listenerNumeros);
 btnNueve.addActionListener(listenerNumeros);
 
-// 3. Creamos un solo "Listener" para los botones de operaciones
+
 ActionListener listenerOperaciones = e -> {
     primerNumero = displayTextField.getText();
     operador = ((JButton) e.getSource()).getText();
-    esNuevaOperacion = true; // Preparamos para que el siguiente número limpie el display
+    esNuevaOperacion = true; 
 };
 
-// 4. Asignamos ese listener a cada botón de operación
+
 btnSuma.addActionListener(listenerOperaciones);
 btnResta.addActionListener(listenerOperaciones);
 btnMultiplicar.addActionListener(listenerOperaciones);
 btnDividir.addActionListener(listenerOperaciones);
 
-// 5. Lógica para el botón de IGUAL
+
 btnIgual.addActionListener(e -> {
     try {
         String segundoNumero = displayTextField.getText();
@@ -76,14 +76,14 @@ btnIgual.addActionListener(e -> {
             case "/":
                 if (n2 == 0) {
                     displayTextField.setText("Error: Div por 0");
-                    return; // Termina la ejecución aquí
+                    return; 
                 }
                 resultado = n1 / n2;
                 break;
         }
         displayTextField.setText(String.valueOf(resultado));
     } catch (Exception ex) {
-        displayTextField.setText("Error"); // Por si algo sale mal
+        displayTextField.setText("Error"); 
     }
     esNuevaOperacion = true;
 });
