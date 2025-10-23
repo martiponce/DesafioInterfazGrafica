@@ -5,9 +5,8 @@
 
 /**
  *
- * @author Alumno
+ * @author marpo
  */
-
 import javax.swing.JOptionPane;
 public class Ejercicio1_Conversor extends javax.swing.JFrame {
 
@@ -27,18 +26,17 @@ public class Ejercicio1_Conversor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         valorEntradaField = new javax.swing.JTextField();
         tipoConversionCombo = new javax.swing.JComboBox<>();
         convertirButton = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         resultadoField = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+
+        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setText("Valor a Convertir:");
-
-        valorEntradaField.setToolTipText("");
 
         tipoConversionCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Celsius a Fahrenheit", "Fahrenheit a Celsius" }));
 
@@ -49,78 +47,88 @@ public class Ejercicio1_Conversor extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Resultado:");
-
         resultadoField.setEditable(false);
-        resultadoField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+
+        jLabel1.setText("Ingresar Valor:");
+
+        jLabel2.setText("Resultado:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(valorEntradaField)
-                    .addComponent(resultadoField, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(tipoConversionCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(convertirButton)
-                .addContainerGap(27, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(valorEntradaField, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
+                                .addComponent(tipoConversionCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(convertirButton, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                                .addComponent(resultadoField)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(21, 21, 21)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
                     .addComponent(valorEntradaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tipoConversionCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(convertirButton))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(resultadoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(42, Short.MAX_VALUE))
+                    .addComponent(tipoConversionCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addComponent(convertirButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(resultadoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void convertirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_convertirButtonActionPerformed
-
-    Conversor miConversor = new Conversor();
+        Conversor miConversor = new Conversor();
 
     try {
-
+        // 2. Obtenemos los datos de la Vista (los componentes)
         String valorStr = valorEntradaField.getText().trim();
         String seleccion = tipoConversionCombo.getSelectedItem().toString();
 
+        // 3. Validamos la entrada
         double valorEntrada = Double.parseDouble(valorStr);
         double resultado;
 
+        // 4. El Controlador decide qué método llamar del Modelo
         if (seleccion.equals("Celsius a Fahrenheit")) {
             resultado = miConversor.celsiusAFahrenheit(valorEntrada);
         } else {
             resultado = miConversor.fahrenheitACelsius(valorEntrada);
         }
 
+        // 5. El Controlador actualiza la Vista
+        // Usamos String.format para redondear a 2 decimales
         resultadoField.setText(String.format("%.2f", resultado));
 
     } catch (NumberFormatException e) {
-        
+        // 6. Manejo de errores
         JOptionPane.showMessageDialog(
                 this,
                 "Error: Ingrese un número válido.",
                 "Error de Entrada",
                 JOptionPane.ERROR_MESSAGE
         );
-        resultadoField.setText(""); 
+        resultadoField.setText(""); // Limpiamos el resultado
     }
     }//GEN-LAST:event_convertirButtonActionPerformed
 
@@ -163,6 +171,7 @@ public class Ejercicio1_Conversor extends javax.swing.JFrame {
     private javax.swing.JButton convertirButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField resultadoField;
     private javax.swing.JComboBox<String> tipoConversionCombo;
     private javax.swing.JTextField valorEntradaField;

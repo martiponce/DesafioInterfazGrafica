@@ -4,11 +4,10 @@
  */
 
 /**
- *
- * @author Alumno
- */
+
 public class Conversor {
     
+
     public double celsiusAFahrenheit(double celsius) {
         // Fórmula: (C * 9/5) + 32
         return (celsius * 9.0 / 5.0) + 32;
